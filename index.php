@@ -51,8 +51,10 @@
 </head>
 <body>
 <br><br><br><br><br><br><br><br><br>
-<center><h2>Jeu puissance 4 </h2>
+<div style="text-align:center;">
+  <h2>Jeu puissance 4 </h2>
 
-<a href="views/index2.php"><button class="button" style="vertical-align:middle"><span>Contre machine </span></button></a><a href="views/index.php"><button class="button" style="vertical-align:middle"><span>contre ami(e) </span></button></a>
-
-</center>
+  <a href="views/index2.php"><button class="button" style="vertical-align:middle"><span>Contre machine </span></button></a>
+  <a href="views/index.php"><button class="button" style="vertical-align:middle"><span>contre ami(e) </span></button></a>
+  <a href="#"><button class="button" style="vertical-align:middle"><span>En ligne (2 joueurs) </span></button></a>
+</div>

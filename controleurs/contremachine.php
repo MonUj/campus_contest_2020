@@ -92,13 +92,13 @@
 					    header('location: ../views/machine.php');	
 					}
 					else{
-						$message="Des nom diffrents";
+						$message="Des noms différents";
 						$_SESSION["message"]=$message;
 						header('location: ../views/index2.php');
 					}
 			    }
 			    else{
-			    	$message="Il faut remplire les champs";
+			    	$message="Il faut remplir les champs";
 					$_SESSION["message"]=$message;
 			    	header('location: ../views/index2.php');
 			    }
