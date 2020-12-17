@@ -4,10 +4,9 @@
 
 $win=0;
 $result="";
- 	require'../classes/Autoloader.php';
+ 	 require'../classes/Autoloader.php';
 	require'../classes/AIMoves.php';
 	Autoloader::register();
-	require'../classes/Connect.php';
 	if(isset($_SESSION['win'])){
     $win=$_SESSION['win'];
 	}
@@ -15,9 +14,7 @@ $result="";
     $result=$_SESSION['result'];
 	}
 
-
-	$instance=DB::getInstance(DSN, USER, PASSWORD);
-
+require'../classes/Connect.php';
 	/*
 	* L'interaction avec la base de donnees
 	*/
@@ -58,8 +55,7 @@ $gagner=new Gagner($r);
                            	$j1 = $_SESSION['nomj1'];
     						$j2 = $_SESSION['nomj2'];
     						$joueur2=$daoJoueur->getJoueur($j2);
-							
-							if($daoScore->getScore($joueur2->getId())==null){
+					    	if($daoScore->getScore($joueur2->getId())==null){
 					    		$s1["id_joueur"]=$joueur2->getId();
 					    		$score2=new Scores($s1);
 					    		$daoScore->addScore($score2);
@@ -67,7 +63,7 @@ $gagner=new Gagner($r);
 
     						$joueur2=$daoJoueur->getJoueur($j2);
     							$daoScore->updateScore($joueur2->getId());
-    						
+
 
                             $result=(($turn == 1) ? $j1 : $j2 )." a gagné !";
 							$_SESSION['result']=$result;
@@ -81,7 +77,7 @@ $gagner=new Gagner($r);
 								}
 						else{
 							$_SESSION['turn']=1;
-							 echo "<center>Systeme a joué, c'est ton tour</center>";
+							 echo "   <center>L'ordinateur a joué, c'est ton tour</center>";
 						}
 
 		    			$affiche=new Affiche($r);
@@ -134,7 +130,6 @@ $gagner=new Gagner($r);
 	else{
 		$listScores=null;
 	}
-
 ?>
 
 
@@ -146,13 +141,13 @@ $gagner=new Gagner($r);
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link rel="stylesheet" type="text/css" href="../public/css/p4.css" title="Normal" />
-	<link rel="stylesheet" type="text/css" href="../public/css/style.css" title="Normal" />
+		<link rel="stylesheet" type="text/css" href="/public/css/style.css" title="Normal" />
 
 	<title>Puissance 4</title>
     </head>
     <body>
-		<div class="jeu">
- 
+		<center><div>
+
 		<?php
 
 				echo "<b>".$result."</b>";
@@ -178,9 +173,7 @@ $gagner=new Gagner($r);
 				<input type="hidden" name="action" value="listJoueurs" />
 			    <input type="submit" value=" La liste des Joueurs" />
 			</form>
-
 			<a href="../"><button style="border: 2px solid #666; margin:10px 5px;" >Retour à l'accueil</button></a>
-
 		</div>
 
 
@@ -200,8 +193,8 @@ if(<?php echo $win;?>=="1"){
 
 
 		<br>
-		<div class="list_joueurs">
-			
+		<div>
+
 			<?php
 				if(!is_null($listJoueurs) && !is_null($listScores)){
 					echo '<table border="1" id="customers" >';
@@ -216,7 +209,7 @@ if(<?php echo $win;?>=="1"){
 				}
 			?>
 
-		</div>
+		</div></center>
 
-	</body>
+    </body>
 </html>
