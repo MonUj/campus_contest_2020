@@ -4,9 +4,10 @@
 
 $win=0;
 $result="";
- 	 require'../classes/Autoloader.php';
+ 	require'../classes/Autoloader.php';
 	require'../classes/AIMoves.php';
 	Autoloader::register();
+	require'../classes/Connect.php';
 	if(isset($_SESSION['win'])){
     $win=$_SESSION['win'];
 	}
@@ -15,12 +16,6 @@ $result="";
 	}
 
 
-	/*define('DSN','mysql:host=remotemysql.com;dbname=ZUYu8a6dAH');
- 	define('USER','ZUYu8a6dAH');
-	define('PASSWORD','SaDMu8KAZP');*/
-	define('DSN','mysql:host=localhost:3306;dbname=puissance4');
- 	define('USER','root');
- 	define('PASSWORD','root');
 	$instance=DB::getInstance(DSN, USER, PASSWORD);
 
 	/*
