@@ -88,13 +88,13 @@ if(isset($_SESSION['win'])){
 					    header('location: ../views/p4.php');
 					}
 					else{
-						$message="Des nom diffrents";
+						$message="Les adversaires doivent avoir deux noms différents !";
 						$_SESSION["message"]=$message;
 						header('location: ../views/index.php');
 					}
 			    }
 			    else{
-			    	$message="Il faut remplire les champs";
+			    	$message="Veuillez remplir le(s) champ(s) manquant(s)";
 					$_SESSION["message"]=$message;
 			    	header('location: ../views/index.php');
 			    }

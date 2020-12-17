@@ -9,21 +9,14 @@
 		$message=null;
 	}
 
+require'header.php'; 
 ?>
-<!DOCTYPE html 
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-    <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<link href="../public/css/style.css" rel="stylesheet" type="text/css">
-		<title>Puissance 4</title>
-    </head>
+
     <body>
 		<div class="form-style-5">
 			<form action="../controleurs/MainControleur.php" method="POST">
 				<fieldset>
-					<legend>Le jeu de puissance 4  contre un ami(e)</legend>
+					<legend>Jouer en local</legend>
 					<legend>
 						<?php
 							if(!is_null($message)){
@@ -35,8 +28,10 @@
 					<input type="text" name="nomj2" placeholder="Nom du joueur 2">
 					<input type="hidden" name="action" value="Commencer">
 					<input type="submit" value="Commencer">
+
 				</fieldset>
 			</form>
+			<a href="../"><button style="border: 2px solid #666; margin:10px 5px;" >Retour à l'accueil</button></a>
 		</div>
     </body>
 </html>

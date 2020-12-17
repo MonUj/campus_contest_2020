@@ -18,7 +18,7 @@
   font-size: 28px;
   padding: 20px;
   width: 400px;
-  transition: all 0.2s;
+  transition: all 0.1s;
   cursor: pointer;
   margin: 5px;
 }

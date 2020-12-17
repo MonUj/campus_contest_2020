@@ -63,7 +63,7 @@ $win=0;
 
 
 
-<!DOCTYPE html 
+<!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -92,10 +92,10 @@ $win=0;
 				<input type="hidden" name="action" value="Recommencer" />
 			    <input type="submit" name="clear" value="Recommencer" />
 			</form>
-			
+
 			<form action="index.php" method="post">
 			    <input type="submit" value="Changer les noms" />
-			</form> 
+			</form>
 
 			<form action="../controleurs/MainControleur.php" method="post">
 				<input type="hidden" name="action" value="listJoueurs" />
@@ -107,9 +107,9 @@ $win=0;
 		</div>
 		<br>
 		<script>
-			 
+
 if(<?php echo $win;?>=="1"){
-  
+
   var x = document.getElementById("choix");
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -118,9 +118,9 @@ if(<?php echo $win;?>=="1"){
   }}
 
 </script>
-			
+
 		<div class="list_joueurs">
-			
+
 			<?php
 				if(!is_null($listJoueurs) && !is_null($listScores)){
 					echo "<table border='1' id='customers'>";
@@ -139,4 +139,3 @@ if(<?php echo $win;?>=="1"){
 
     </body>
 </html>
-
