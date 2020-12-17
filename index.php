@@ -4,7 +4,7 @@
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<title>Puissance 4</title>
     </head>
-     
+
 
 
     <style>
@@ -17,44 +17,27 @@
   text-align: center;
   font-size: 28px;
   padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
+  width: 400px;
+  transition: all 0.2s;
   cursor: pointer;
   margin: 5px;
 }
 
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+
+
+
+.button:hover {
+  background-color: #0705a1;
 }
 
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
 </style>
 </head>
 <body>
 <br><br><br><br><br><br><br><br><br>
 <div style="text-align:center;">
-  <h2>Jeu puissance 4 </h2>
+  <h2>Jouer au Puissance 4</h2>
 
-  <a href="views/index2.php"><button class="button" style="vertical-align:middle"><span>Contre machine </span></button></a>
-  <a href="views/index.php"><button class="button" style="vertical-align:middle"><span>contre ami(e) </span></button></a>
-  <a href="#"><button class="button" style="vertical-align:middle"><span>En ligne (2 joueurs) </span></button></a>
+  <a href="views/index2.php"><button class="button" style="vertical-align:middle"><span>Contre l'ordinateur</span></button></a>
+  <a href="views/index.php"><button class="button" style="vertical-align:middle"><span>En local</span></button></a>
+  <a href="#"><button class="button" style="vertical-align:middle"><span>En ligne</span></button></a>
 </div>
