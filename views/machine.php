@@ -14,13 +14,13 @@ $result="";
     $result=$_SESSION['result'];
 	}
 
-	
+
 	/*define('DSN','mysql:host=remotemysql.com;dbname=ZUYu8a6dAH');
  	define('USER','ZUYu8a6dAH');
 	define('PASSWORD','SaDMu8KAZP');*/
 	define('DSN','mysql:host=localhost:3306;dbname=puissance4');
  	define('USER','root');
- 	define('PASSWORD','');
+ 	define('PASSWORD','root');
 	$instance=DB::getInstance(DSN, USER, PASSWORD);
 
 	/*
@@ -28,10 +28,10 @@ $result="";
 	*/
 	$daoJoueur=new DAOJoueurImpl($instance);
 	$daoScore=new DAOScoreImpl($instance);
- 
 
- 
- 
+
+
+
 
 	if(!isset($_SESSION["nomj1"]) || !isset($_SESSION["nomj2"])){
 		header('location: index.php');
@@ -40,7 +40,7 @@ $result="";
 	/*
 	* Chargement des classes
 	*/
-	 
+
 
 
 $r=unserialize($_SESSION["init"]);
@@ -54,8 +54,7 @@ $var= new AIMoves();
 $t=$_SESSION['turn'];
 
  if($t==2){
-//print($var->AIPlay());
- 	 
+
 $jouer=new Jouer($r);
 if($jouer->jouer($var->AIPlay(), $t)){
 $gagner=new Gagner($r);
@@ -69,7 +68,7 @@ $gagner=new Gagner($r);
 					    		$score2=new Scores($s1);
 					    		$daoScore->addScore($score2);
 					    	}
-    						
+
     						$joueur2=$daoJoueur->getJoueur($j2);
     							$daoScore->updateScore($joueur2->getId());
     						*/
@@ -86,7 +85,7 @@ $gagner=new Gagner($r);
 								}
 						else{
 							$_SESSION['turn']=1;
-							 echo "   <center>Systeme a jouer c'est ton tour</center>";
+							 echo "   <center>Systeme a joué, c'est ton tour</center>";
 						}
 
 		    			$affiche=new Affiche($r);
@@ -95,7 +94,7 @@ $gagner=new Gagner($r);
 
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($r);
-						
+
 
 
 
@@ -143,7 +142,7 @@ $gagner=new Gagner($r);
 
 
 
-<!DOCTYPE html 
+<!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -156,11 +155,11 @@ $gagner=new Gagner($r);
     </head>
     <body>
 		<center><div>
- 
+
 		<?php
-			 
+
 				echo "<b>".$result."</b>";
-			
+
 			if(!is_null($affichagePlateau)){
 				$affichagePlateau->affiche_plateau();
 			}
@@ -173,10 +172,10 @@ $gagner=new Gagner($r);
 				<input type="hidden" name="action" value="Recommencer" />
 			    <input type="submit" name="clear" value="Recommencer" />
 			</form>
-			
+
 			<form action="index2.php" method="post">
 			    <input type="submit" value="Changer les noms" />
-			</form> 
+			</form>
 
 			<form action="../controleurs/contremachine.php" method="post">
 				<input type="hidden" name="action" value="listJoueurs" />
@@ -187,9 +186,9 @@ $gagner=new Gagner($r);
 
 
 		<script>
-			 
+
 if(<?php echo $win;?>=="1"){
-  
+
   var x = document.getElementById("choix");
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -198,12 +197,12 @@ if(<?php echo $win;?>=="1"){
   }}
 
 </script>
-					
 
-		 
+
+
 		<br>
 		<div>
-			
+
 			<?php
 				if(!is_null($listJoueurs) && !is_null($listScores)){
 					echo '<table border="1" id="customers" >';
@@ -222,4 +221,3 @@ if(<?php echo $win;?>=="1"){
 
     </body>
 </html>
-

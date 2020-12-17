@@ -15,14 +15,8 @@ if(isset($_SESSION['win'])){
 	require'../classes/Autoloader.php';
 	Autoloader::register();
 
-	
-	/*define('DSN','mysql:host=remotemysql.com;dbname=ZUYu8a6dAH');
- 	define('USER','ZUYu8a6dAH');
-	define('PASSWORD','SaDMu8KAZP');*/
-	define('DSN','mysql:host=localhost:3306;dbname=puissance4');
- 	define('USER','root');
- 	define('PASSWORD','');
-	$instance=DB::getInstance(DSN, USER, PASSWORD);
+
+	require'../classes/Connect.php';
 
 	/*
 	* L'interaction avec la base de donnees
@@ -43,7 +37,7 @@ if(isset($_SESSION['win'])){
 						$_SESSION['nomj1'] = $nomj1;
 						$_SESSION['nomj2'] = $nomj2;
 						setcookie("nomj1", $_POST['nomj1'], time()+12*24*3600); // expire dans 12 jours
-						setcookie("nomj2", $_POST['nomj2'], time()+12*24*3600); 
+						setcookie("nomj2", $_POST['nomj2'], time()+12*24*3600);
 
 						// Dans le cas ou la session a expire, on reprend aussi les noms dans les cookies
 					    if (!isset($_SESSION['nomj1'])) {
@@ -68,7 +62,7 @@ if(isset($_SESSION['win'])){
 					    }
 
 					    /**
-					    * L'ajout du joueur 1 s'il n'existe pas
+					    * L'ajout du joueur 2 s'il n'existe pas
 					    */
 					    if($daoJoueur->getJoueur($nomj2)==null){
 					    	$j2["nom"]=$nomj2;
@@ -93,7 +87,7 @@ if(isset($_SESSION['win'])){
 
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
-					    header('location: ../views/p4.php');	
+					    header('location: ../views/p4.php');
 					}
 					else{
 						$message="Des nom diffrents";
@@ -146,7 +140,7 @@ if(isset($_SESSION['win'])){
 
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
-						
+
 					    header('location: ../views/p4.php');
 		    		}
 		    		else{
@@ -185,4 +179,3 @@ if(isset($_SESSION['win'])){
 	else{
 		header('location: ../views/index.php');
 	}
-   
