@@ -15,7 +15,10 @@
 	* L'interaction avec la base de donnees
 	*/
 	$daoJoueur=new DAOJoueurImpl($instance);
-	$daoScore=new DAOScoreImpl($instance);
+    $daoScore=new DAOScoreImpl($instance);
+    
+    ini_set("SMTP","smtp.gmail.com" );
+    ini_set('sendmail_from', 'julienroyau49@gmail.com');
 
 	if(isset($_POST) && count($_POST)>0){
 		if(isset($_POST['action'])){
@@ -23,16 +26,32 @@
 			if($action==="Commencer"){
 				$_SESSION['win']=0;
 				$_SESSION['result']=" ";
-
-				if (isset($_POST['nomj1']) && $_POST['nomj1']!="" ) {
+                
+                
+                if (isset($_POST['nomj1']) && $_POST['nomj1']!="" ) {
 					$nomj1=$_POST['nomj1'];
-					$nomj2="Ordinateur";
+                    //$nomj2="Ordinateur";
+                    
+                    if(isset($_POST['invit_mail']) && $_POST['invit_mail']!=""){
+                        $destinataire = $_POST['invit_mail'];
+                        $envoyeur = $nomj1;
+                        //$lien = echo '';
+                        //echo $lien = "<a href="/">Jouer</a>";
+                        $message = 'Vous avez été invité à jouer au puissance 4, cliquez sur le lien pour rejoindre la partie : https://P4_php/PHP-Puissance4/views'; //'.$lien.'
 
-					if($nomj1!=$nomj2){
+                        mail($destinataire, "Invitation au jeu Puissance 4 par '.$envoyeur.'", $message);
+                    }
+
+					/*if($nomj1!=$nomj2){
 						$_SESSION['nomj1'] = $nomj1;
 						$_SESSION['nomj2'] = $nomj2;
 						setcookie("nomj1", $_POST['nomj1'], time()+12*24*3600); // expire dans 12 jours
-						setcookie("nomj2", $_POST['nomj2'], time()+12*24*3600);
+                        setcookie("nomj2", $_POST['nomj2'], time()+12*24*3600);*/
+                        
+                    if($nomj1){
+                        $_SESSION['nomj1'] = $nomj1;
+                        setcookie("nomj1", $_POST['nomj1'], time()+12*24*3600);
+                    
 
 						// Dans le cas ou la session a expiré, on reprend aussi les noms dans les cookies
 					    if (!isset($_SESSION['nomj1'])) {
@@ -59,7 +78,7 @@
 					    /**
 					    * L'ajout du joueur 2 s'il n'existe pas
 					    */
-					    if($daoJoueur->getJoueur($nomj2)==null){
+					    /*if($daoJoueur->getJoueur($nomj2)==null){
 					    	$j2["nom"]=$nomj2;
 					    	$joueur2=new Joueurs($j2);
 					    	$daoJoueur->addJoueur($joueur2);
@@ -70,7 +89,7 @@
 					    		$score2=new Scores($s1);
 					    		$daoScore->addScore($score2);
 					    	}
-					    }
+					    }*/
 
 
 					    $_SESSION['turn']=1;

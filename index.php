@@ -39,5 +39,5 @@
 
   <a href="views/index2.php"><button class="button" style="vertical-align:middle"><span>Contre l'ordinateur</span></button></a>
   <a href="views/index.php"><button class="button" style="vertical-align:middle"><span>En local</span></button></a>
-  <a href="#"><button class="button" style="vertical-align:middle"><span>En ligne</span></button></a>
+  <a href="views/index3.php"><button class="button" style="vertical-align:middle"><span>En ligne</span></button></a>
 </div>
