@@ -86,11 +86,7 @@ $gagner=new Gagner($r);
 								}
 						else{
 							$_SESSION['turn']=1;
-<<<<<<< HEAD
-							 echo "   <center>Systeme à jouer c'est ton tour</center>";
-=======
-							 echo "   <center>Systeme a joué, c'est ton tour</center>";
->>>>>>> 24439a2e3225bc1b509d1911854d4d917cb81e60
+							 echo "<center>Systeme a joué, c'est ton tour</center>";
 						}
 
 		    			$affiche=new Affiche($r);
