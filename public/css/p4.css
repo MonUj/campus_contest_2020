@@ -8,6 +8,7 @@ table {
     margin: 20px;
     border: 4px solid black;
     padding: 0;
+    display: inline-block;
 }
 
 tr {
@@ -32,11 +33,21 @@ form {
 }
 
 form.intable {
-    text-align: center;
+    /*text-align: center;*/
     margin: 0;
 }
 
 input {
     border: 2px solid #666;
     margin: 5px;
+}
+
+.jeu{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.list_joueurs{
+    text-align: center;
 }

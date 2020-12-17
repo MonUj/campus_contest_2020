@@ -14,8 +14,6 @@ if(isset($_SESSION['win'])){
 	*/
 	require'../classes/Autoloader.php';
 	Autoloader::register();
-
-
 	require'../classes/Connect.php';
 
 	/*

@@ -73,7 +73,7 @@ $win=0;
 	<title>Puissance 4</title>
     </head>
     <body>
-		<div>
+		<div class="jeu">
 
 
 		<?php
@@ -102,6 +102,8 @@ $win=0;
 			    <input type="submit" value=" La liste des Joueurs" />
 			</form>
 
+			<a href="../"><button style="border: 2px solid #666; margin:10px 5px;" >Retour à l'accueil</button></a>
+
 		</div>
 		<br>
 		<script>
@@ -117,7 +119,7 @@ if(<?php echo $win;?>=="1"){
 
 </script>
 			
-		<div>
+		<div class="list_joueurs">
 			
 			<?php
 				if(!is_null($listJoueurs) && !is_null($listScores)){
