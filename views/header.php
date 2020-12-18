@@ -5,5 +5,7 @@
     <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<link href="../public/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="../public/images/icon.ico"/>
 		<title>Puissance 4</title>
     </head>
+  
