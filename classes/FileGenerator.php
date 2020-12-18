@@ -3,7 +3,7 @@
    class FileGenerator{
 
 
-	private $_pdo; 
+	private $_pdo;
 
    	public function __construct($pdo){
         $this->_pdo=$pdo;
@@ -14,16 +14,16 @@
     	$show='show tables';
 
     	$resultat=$this->_pdo->query($show);
-        
+
     	while($table=$resultat->fetch()){
 
     		$this->generer($table['Tables_in_'.$dbName], $chemin);
-    		
-    	}	
+
+    	}
     }
 
 	public function getColumns($table){
-		
+
       $donnees=array();
       $chaine='';
       $select='select * from '.$table;
@@ -46,7 +46,7 @@
 
    				if(count($attributs)!=0){
 					  $open=fopen($chemin.''.ucfirst($table).'.php','w+');
-	                  fwrite($open,'<?php 
+	                  fwrite($open,'<?php
 	                class '.ucfirst($table).'{
 
 	                  		');
@@ -61,7 +61,7 @@
 
 		                  	public function __construct(array $donnees){
 
-		                    	$this->inisialiser($donnees);
+		                    	$this->initialiser($donnees);
 
 		                    }');
 
@@ -90,7 +90,7 @@
 
 	                  	'
 
-		                  	public function inisialiser(array $donnees){
+		                  	public function initialiser(array $donnees){
 
 		                        foreach ($donnees as $cle => $valeur) {
 
@@ -110,7 +110,7 @@
 	                  fwrite($open,'
 	                }');
    				}
-                  
+
 
     }
 

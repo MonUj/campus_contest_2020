@@ -16,7 +16,7 @@
 	*/
 	$daoJoueur=new DAOJoueurImpl($instance);
     $daoScore=new DAOScoreImpl($instance);
-    
+
     ini_set("SMTP","smtp.gmail.com" );
     ini_set('sendmail_from', 'julienroyau49@gmail.com');
 
@@ -26,12 +26,12 @@
 			if($action==="Commencer"){
 				$_SESSION['win']=0;
 				$_SESSION['result']=" ";
-                
-                
+
+
                 if (isset($_POST['nomj1']) && $_POST['nomj1']!="" ) {
 					$nomj1=$_POST['nomj1'];
                     //$nomj2="Ordinateur";
-                    
+
                     if(isset($_POST['invit_mail']) && $_POST['invit_mail']!=""){
                         $destinataire = $_POST['invit_mail'];
                         $envoyeur = $nomj1;
@@ -47,11 +47,11 @@
 						$_SESSION['nomj2'] = $nomj2;
 						setcookie("nomj1", $_POST['nomj1'], time()+12*24*3600); // expire dans 12 jours
                         setcookie("nomj2", $_POST['nomj2'], time()+12*24*3600);*/
-                        
+
                     if($nomj1){
                         $_SESSION['nomj1'] = $nomj1;
                         setcookie("nomj1", $_POST['nomj1'], time()+12*24*3600);
-                    
+
 
 						// Dans le cas ou la session a expiré, on reprend aussi les noms dans les cookies
 					    if (!isset($_SESSION['nomj1'])) {
@@ -101,7 +101,7 @@
 
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
-					    header('location: ../views/machine.php');
+					    header('location: ../views/ordinateur.php');
 					}
 					else{
 						$message="Les adversaires doivent avoir deux noms différents !";
@@ -159,10 +159,10 @@
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
 
-					    header('location: ../views/machine.php');
+					    header('location: ../views/ordinateur.php');
 		    		}
 		    		else{
-		    			header('location: ../views/machine.php');
+		    			header('location: ../views/ordinateur.php');
 		    		}
 		    	}
 		    }
@@ -183,14 +183,14 @@
 
 				$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 				$_SESSION["init"]=serialize($init);
-			    header('location: ../views/machine.php');
+			    header('location: ../views/ordinateur.php');
 		    }
 		    else if($action==="listJoueurs"){
 		    	$joueurs=$daoJoueur->getAllJoueurs();
 		    	$scores=$daoScore->getAllScores();
 		    	$_SESSION["list_joueurs"]=serialize($joueurs);
 		    	$_SESSION["list_scores"]=serialize($scores);
-		    	header('location: ../views/machine.php');
+		    	header('location: ../views/ordinateur.php');
 		    }
 			else{
 				header('location: ../views/index2.php');

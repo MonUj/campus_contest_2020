@@ -9,12 +9,12 @@
 		$message=null;
 	}
 
-require'header.php'; 
+require'header.php';
 ?>
 
     <body>
 		<div class="form-style-5">
-			<form action="../controleurs/contremachine.php" method="POST">
+			<form action="../controleurs/contreOrdinateur.php" method="POST">
 				<fieldset>
 					<legend>Jouer contre l'ordinateur</legend>
 					<legend>

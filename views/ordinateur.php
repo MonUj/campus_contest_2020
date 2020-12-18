@@ -1,7 +1,29 @@
 <?php
-$win=0;
 
 	session_start();
+
+$win=0;
+$result="";
+ 	 require'../classes/Autoloader.php';
+	require'../classes/AIMoves.php';
+	Autoloader::register();
+	if(isset($_SESSION['win'])){
+    $win=$_SESSION['win'];
+	}
+   if(isset($_SESSION['result'])){
+    $result=$_SESSION['result'];
+	}
+
+require'../classes/Connect.php';
+	/*
+	* L'interaction avec la base de donnees
+	*/
+	$daoJoueur=new DAOJoueurImpl($instance);
+	$daoScore=new DAOScoreImpl($instance);
+
+
+
+
 
 	if(!isset($_SESSION["nomj1"]) || !isset($_SESSION["nomj2"])){
 		header('location: index.php');
@@ -10,16 +32,67 @@ $win=0;
 	/*
 	* Chargement des classes
 	*/
-	require'../classes/Autoloader.php';
-	Autoloader::register();
 
 
-	if(isset($_SESSION['win'])){
-    $win=$_SESSION['win'];
-	}
- if(isset($_SESSION['result'])){
-    $result=$_SESSION['result'];
-	}
+
+$r=unserialize($_SESSION["init"]);
+$GLOBALS['turn']=$_SESSION['turn'];
+$GLOBALS['board']=$r->getboard();
+$GLOBALS['HAUT']=$r->getHaut();
+$GLOBALS['Larg']=$r->getLarg();
+
+
+$var= new AIMoves();
+$t=$_SESSION['turn'];
+
+ if($t==2){
+
+$jouer=new Jouer($r);
+if($jouer->jouer($var->AIPlay(), $t)){
+$gagner=new Gagner($r);
+
+                           if($gagner->est_gagnant($var->AIPlay()+1, $turn)){
+                           	$j1 = $_SESSION['nomj1'];
+    						$j2 = $_SESSION['nomj2'];
+    						$joueur2=$daoJoueur->getJoueur($j2);
+					    	if($daoScore->getScore($joueur2->getId())==null){
+					    		$s1["id_joueur"]=$joueur2->getId();
+					    		$score2=new Scores($s1);
+					    		$daoScore->addScore($score2);
+					    	}
+
+    						$joueur2=$daoJoueur->getJoueur($j2);
+    							$daoScore->updateScore($joueur2->getId());
+
+
+                            $result=(($turn == 1) ? $j1 : $j2 )." a gagné !";
+							$_SESSION['result']=$result;
+							$_SESSION['turn']=1;
+							$_SESSION['final']="final";
+							$_SESSION['result']=$result;
+							$_SESSION['win']=1;
+							$result=$_SESSION['result'];
+							$win=$_SESSION['win'];
+
+								}
+						else{
+							$_SESSION['turn']=1;
+							 echo "   <center>L'ordinateur a joué, c'est ton tour</center>";
+						}
+
+		    			$affiche=new Affiche($r);
+						$affichage=new Affichage($r);
+						$affichagePlateau=new AffichagePlateau($r, $affiche, $affichage);
+
+						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
+						$_SESSION["init"]=serialize($r);
+
+
+
+
+}
+
+}
 	if(isset($_SESSION["affichagePlateau"])){
 		$affichagePlateau=unserialize($_SESSION["affichagePlateau"]);
 	}
@@ -61,8 +134,6 @@ $win=0;
 
 
 
-
-
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -70,16 +141,17 @@ $win=0;
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link rel="stylesheet" type="text/css" href="../public/css/p4.css" title="Normal" />
+		<link rel="stylesheet" type="text/css" href="/public/css/style.css" title="Normal" />
+
 	<title>Puissance 4</title>
     </head>
     <body>
-		<div class="jeu">
-
+		<center><div>
 
 		<?php
-			if(!is_null($result)){
+
 				echo "<b>".$result."</b>";
-			}
+
 			if(!is_null($affichagePlateau)){
 				$affichagePlateau->affiche_plateau();
 			}
@@ -88,24 +160,23 @@ $win=0;
 			}
 		?>
 
-			<form action="../controleurs/MainControleur.php" method="post">
+			<form action="../controleurs/contreOrdinateur.php" method="post">
 				<input type="hidden" name="action" value="Recommencer" />
 			    <input type="submit" name="clear" value="Recommencer" />
 			</form>
 
-			<form action="index.php" method="post">
+			<form action="index2.php" method="post">
 			    <input type="submit" value="Changer les noms" />
 			</form>
 
-			<form action="../controleurs/MainControleur.php" method="post">
+			<form action="../controleurs/contreOrdinateur.php" method="post">
 				<input type="hidden" name="action" value="listJoueurs" />
 			    <input type="submit" value=" La liste des Joueurs" />
 			</form>
-
 			<a href="../"><button style="border: 2px solid #666; margin:10px 5px;" >Retour à l'accueil</button></a>
-
 		</div>
-		<br>
+
+
 		<script>
 
 if(<?php echo $win;?>=="1"){
@@ -119,12 +190,15 @@ if(<?php echo $win;?>=="1"){
 
 </script>
 
-		<div class="list_joueurs">
+
+
+		<br>
+		<div>
 
 			<?php
 				if(!is_null($listJoueurs) && !is_null($listScores)){
-					echo "<table border='1' id='customers'>";
-					echo "<tr><td>Nom</td><td>Score</td></tr>";
+					echo '<table border="1" id="customers" >';
+					echo "<tr><th>Nom</th><th>Score</th></tr>";
 					foreach ($listJoueurs as $joueur) {
 						foreach ($listScores as $score) {
 							if($joueur->getId()== $score->getId_joueur()){
@@ -135,7 +209,7 @@ if(<?php echo $win;?>=="1"){
 				}
 			?>
 
-		</div>
+		</div></center>
 
     </body>
 </html>

@@ -9,12 +9,12 @@
 		$message=null;
 	}
 
-require'header.php'; 
+require'header.php';
 ?>
 
     <body>
 		<div class="form-style-5">
-			<form action="../controleurs/MainControleur.php" method="POST">
+			<form action="../controleurs/enlocal.php" method="POST">
 				<fieldset>
 					<legend>Jouer en local</legend>
 					<legend>

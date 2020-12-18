@@ -1,14 +1,14 @@
-<?php 
+<?php
 	                class Scores{
 
 	                  		private $_id;
 	                     	private $_score;
 	                     	private $_id_joueur;
-	                     	
+
 
 		                  	public function __construct(array $donnees){
 
-		                    	$this->inisialiser($donnees);
+		                    	$this->initialiser($donnees);
 
 		                    }
 
@@ -48,7 +48,7 @@
 
 		                    }
 
-		                  	public function inisialiser(array $donnees){
+		                  	public function initialiser(array $donnees){
 
 		                        foreach ($donnees as $cle => $valeur) {
 

@@ -85,7 +85,7 @@ if(isset($_SESSION['win'])){
 
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
-					    header('location: ../views/p4.php');
+					    header('location: ../views/local.php');
 					}
 					else{
 						$message="Les adversaires doivent avoir deux noms différents !";
@@ -139,10 +139,10 @@ if(isset($_SESSION['win'])){
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
 
-					    header('location: ../views/p4.php');
+					    header('location: ../views/local.php');
 		    		}
 		    		else{
-		    			header('location: ../views/p4.php');
+		    			header('location: ../views/local.php');
 		    		}
 		    	}
 		    }
@@ -157,14 +157,14 @@ if(isset($_SESSION['win'])){
 
 				$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 				$_SESSION["init"]=serialize($init);
-			    header('location: ../views/p4.php');
+			    header('location: ../views/local.php');
 		    }
 		    else if($action==="listJoueurs"){
 		    	$joueurs=$daoJoueur->getAllJoueurs();
 		    	$scores=$daoScore->getAllScores();
 		    	$_SESSION["list_joueurs"]=serialize($joueurs);
 		    	$_SESSION["list_scores"]=serialize($scores);
-		    	header('location: ../views/p4.php');
+		    	header('location: ../views/local.php');
 		    }
 			else{
 				header('location: ../views/index.php');

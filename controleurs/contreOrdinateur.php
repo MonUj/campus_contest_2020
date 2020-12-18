@@ -8,7 +8,8 @@
 	require'../classes/Autoloader.php';
 	require'../classes/AIMoves.php';
 	Autoloader::register();
-	require'../classes/Connect.php';
+
+require'../classes/Connect.php';
 
 
 	/*
@@ -82,7 +83,7 @@
 
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
-					    header('location: ../views/machine.php');
+					    header('location: ../views/ordinateur.php');
 					}
 					else{
 						$message="Les adversaires doivent avoir deux noms différents !";
@@ -140,10 +141,10 @@
 						$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 						$_SESSION["init"]=serialize($init);
 
-					    header('location: ../views/machine.php');
+					    header('location: ../views/ordinateur.php');
 		    		}
 		    		else{
-		    			header('location: ../views/machine.php');
+		    			header('location: ../views/ordinateur.php');
 		    		}
 		    	}
 		    }
@@ -164,14 +165,14 @@
 
 				$_SESSION["affichagePlateau"]=serialize($affichagePlateau);
 				$_SESSION["init"]=serialize($init);
-			    header('location: ../views/machine.php');
+			    header('location: ../views/ordinateur.php');
 		    }
 		    else if($action==="listJoueurs"){
 		    	$joueurs=$daoJoueur->getAllJoueurs();
 		    	$scores=$daoScore->getAllScores();
 		    	$_SESSION["list_joueurs"]=serialize($joueurs);
 		    	$_SESSION["list_scores"]=serialize($scores);
-		    	header('location: ../views/machine.php');
+		    	header('location: ../views/ordinateur.php');
 		    }
 			else{
 				header('location: ../views/index2.php');

@@ -14,7 +14,7 @@
 
 		public function affiche_plateau(){
 			$haut=$this->_init->getHaut();
-			echo '<center><form class="intable" name="jouer" method="POST" action="../controleurs/MainControleur.php">'."\n";
+			echo '<center><form class="intable" name="jouer" method="POST" action="../controleurs/enlocal.php">'."\n";
 				echo '<table>'."\n";
 					for ($i=($haut - 1); $i>=0; $i--){
 						$this->_affiche->affiche_ligne($i);
