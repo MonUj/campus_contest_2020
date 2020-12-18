@@ -19,7 +19,7 @@
 				    echo (($c == 0) ? "vide.png" : (($c == 1) ? "joueur1.png" : "joueur2.png"));
 				    echo '" alt="';
 				    echo (($c == 0) ? "0" : (($c == 1) ? "j1" : "j2"));
-				    echo '" /></td></center>'; 
+				    echo '" /></td></center>';
 				}
 			echo "\n</tr>\n";
 		}
